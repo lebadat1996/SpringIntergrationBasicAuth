@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
@@ -30,5 +27,10 @@ public class CustomerController {
     public ResponseEntity<Customer> getdAll() {
         ResponseEntity<Customer> listCustomer = customerService.getAll();
         return new ResponseEntity<Customer>(listCustomer, HttpStatus.OK);
+    }
+
+    @RequestMapping("/getCustomerByCaseId/{id}")
+    public ResponseEntity<Customer> getCustomerByCaseId(@PathVariable(name = "id") int id) {
+        return customerService.getCustomerByCaseId(id);;
     }
 }

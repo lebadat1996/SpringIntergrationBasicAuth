@@ -17,6 +17,7 @@ import java.util.List;
 public class CustomerService implements CustomerServiceImpl {
     @Autowired
     CustomerRepository customerRepository;
+    private CustomerRepository +;
 
     @Override
     public List<Customer> getAll() {
