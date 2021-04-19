@@ -1,10 +1,12 @@
 package com.training.springboot.productmanager.entity;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 public class CustomerModel {
 
-    private Long id;
+    private Integer id;
 
     private String storeId;
 
@@ -20,11 +22,11 @@ public class CustomerModel {
 
     private String dateCreate;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -77,9 +79,6 @@ public class CustomerModel {
         this.caseId = caseId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDateCreate() {
         return dateCreate;

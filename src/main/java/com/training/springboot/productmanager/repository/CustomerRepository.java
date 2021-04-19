@@ -12,4 +12,6 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("SELECT e FROM Customer e WHERE e.caseId = ?1")
     List<Customer> findByCaseId(String caseId);
+
+    Customer findCustomerByID(Integer Id);
 }

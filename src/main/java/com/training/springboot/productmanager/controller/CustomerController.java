@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -27,15 +29,32 @@ public class CustomerController {
     }
 
     /* ---------------- GET ALL CUSTOMER ------------------------ */
-    @PostMapping("/customers")
+    @GetMapping("/customers")
     public ResponseEntity<List<Customer>> getAll() {
         List<Customer> listCustomer = customerService.getAll();
         return new ResponseEntity<List<Customer>>(listCustomer, HttpStatus.OK);
     }
 
-    @RequestMapping("/getCustomerByCaseId")
-    public ResponseEntity<List<Customer>> getCustomerByCaseId(@RequestBody CustomerModel model){
-        List<Customer> listCustomerByCaseId = customerService.getCustomerByCaseId(model.getCaseId());
+    /* ---------------- GET CUSTOMER BY ID ------------------------ */
+    @GetMapping("/getCustomerByCaseId")
+    public ResponseEntity<List<Customer>> getCustomerByCaseId(@RequestParam String caseId){
+        List<Customer> listCustomerByCaseId = customerService.getCustomerByCaseId(caseId);
         return new ResponseEntity<List<Customer>>(listCustomerByCaseId, HttpStatus.OK);
     }
+
+    /* ---------------- UPDATE CUSTOMER ------------------------ */
+    @PostMapping("/updateCustomer")
+    public ResponseEntity<Customer> update(@RequestBody CustomerModel model) throws ParseException {
+        Customer customer = customerService.update(model);
+        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+    }
+
+
+    /* ---------------- Sort Customer ------------------------ */
+//    @GetMapping("/sortCustomer")
+//    public ResponseEntity<Customer> sortCustomer(){
+//        return Arrays.sort();
+//    }
+
+
 }
