@@ -15,5 +15,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     Customer findCustomerByID(Integer Id);
 
-    List<Customer> findAllByOrderByIdAsc();
+    @Query("SELECT e FROM Customer e order by e.ID asc ")
+    List<Customer> sortById();
 }
