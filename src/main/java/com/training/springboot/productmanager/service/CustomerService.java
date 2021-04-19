@@ -41,7 +41,7 @@ public class CustomerService implements CustomerServiceImpl {
     @Override
     public Customer update(CustomerModel model) throws ParseException {
         Optional<Customer> customer = customerRepository.findById(model.getId());
-        if (customer.isPresent()) {
+        if (!customer.isPresent()) {
             return customerRepository.save(customer.get());
         } else {
             customer.get().setCaseId(model.getCaseId());
