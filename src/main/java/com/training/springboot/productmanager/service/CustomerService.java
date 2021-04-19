@@ -70,7 +70,7 @@ public class CustomerService implements CustomerServiceImpl {
 
     @Override
     public List<Customer> sortCustomer() {
-        List<Customer> result = customerRepository.findAll();
+        List<Customer> result = customerRepository.findAllByOrderByIdAsc();
         return result;
     }
 }
