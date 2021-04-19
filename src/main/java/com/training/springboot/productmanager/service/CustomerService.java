@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +41,7 @@ public class CustomerService implements CustomerServiceImpl {
     @Override
     public Customer update(CustomerModel model) throws ParseException {
         Optional<Customer> customer = customerRepository.findById(model.getId());
-        if (!customer.isPresent()) {
+        if (customer.isPresent()) {
             return customerRepository.save(customer.get());
         } else {
             customer.get().setCaseId(model.getCaseId());
@@ -74,6 +73,4 @@ public class CustomerService implements CustomerServiceImpl {
         List<Customer> result = customerRepository.findAll();
         return result;
     }
-
-
 }

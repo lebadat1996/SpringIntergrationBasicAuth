@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>List Customer</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>CaseID</th>
+            <th>CifNo</th>
+            <th>Description</th>
+            <th>DossierId</th>
+            <th>StoreId</th>
+            <th>DateCreate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer :${customers}">
+            <td th:text="${customer.getId()}"></td>
+            <td th:text="${customer.getCustomerName()}"> </td>
+            <td th:text="${customer.getCaseId()}"></td>
+            <td th:text="${customer.getCifNo()}"></td>
+            <td th:text="${customer.getDescription()}"></td>
+            <td th:text="${customer.getDossierId()}"></td>
+            <td th:text="${customer.getStoreId()}"></td>
+            <td th:text="${customer.getDateCreate()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

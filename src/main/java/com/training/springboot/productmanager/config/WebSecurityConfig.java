@@ -32,8 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/hello")
-                .permitAll()
+                .defaultSuccessUrl("/api/list")
                 .and()
                 .logout()
                 .permitAll();
