@@ -13,6 +13,6 @@ public interface CustomerServiceImpl {
 
     Customer update(Customer customer);
 
-    Customer getCustomerByCaseId(String caseId);
+    List<Customer> getCustomerByCaseId(String caseId);
 
 }

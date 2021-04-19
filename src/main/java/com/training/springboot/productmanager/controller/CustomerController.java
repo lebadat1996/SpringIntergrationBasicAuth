@@ -1,15 +1,18 @@
 package com.training.springboot.productmanager.controller;
 
+
 import com.training.springboot.productmanager.entity.Customer;
 import com.training.springboot.productmanager.entity.CustomerModel;
 import com.training.springboot.productmanager.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -30,8 +33,9 @@ public class CustomerController {
         return new ResponseEntity<List<Customer>>(listCustomer, HttpStatus.OK);
     }
 
-//    @RequestMapping("/getCustomerByCaseId/{id}")
-//    public ResponseEntity<Customer> getCustomerByCaseId(@PathVariable(name = "id") int id) {
-//        return customerService.getCustomerByCaseId(i
-//    }
+    @RequestMapping("/getCustomerByCaseId")
+    public ResponseEntity<List<Customer>> getCustomerByCaseId(@RequestBody CustomerModel model){
+        List<Customer> listCustomerByCaseId = customerService.getCustomerByCaseId(model.getCaseId());
+        return new ResponseEntity<List<Customer>>(listCustomerByCaseId, HttpStatus.OK);
+    }
 }

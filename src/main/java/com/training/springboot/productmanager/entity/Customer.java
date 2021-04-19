@@ -2,12 +2,15 @@ package com.training.springboot.productmanager.entity;
 
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
 @Table(name = "ECM_CUSTOMER")
+@Data
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,69 +47,6 @@ public class Customer {
 
 
 
-    public String getStoreId() {
-        return storeId;
-    }
 
-
-    public String getDossierId() {
-        return dossierId;
-    }
-
-    public void setDossierId(String dossierId) {
-        this.dossierId = dossierId;
-    }
-
-
-    public String getCifNo() {
-        return cifNo;
-    }
-
-    public void setCifNo(String cifNo) {
-        this.cifNo = cifNo;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
-    public String getCaseId() {
-        return caseId;
-    }
-
-    public void setCaseId(String caseId) {
-        this.caseId = caseId;
-    }
-
-
-    public Date getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
-    }
-
-    public void setStatus(int error) {
-    }
-
-    public void setMessage(String customer_not_found) {
-    }
 
 }

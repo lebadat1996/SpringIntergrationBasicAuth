@@ -19,7 +19,6 @@ public class CustomerService implements CustomerServiceImpl {
     @Autowired
     CustomerRepository customerRepository;
 
-
     @Override
     public List<Customer> getAll() {
         return customerRepository.findAll();
@@ -46,7 +45,10 @@ public class CustomerService implements CustomerServiceImpl {
     }
 
     @Override
-    public Customer getCustomerByCaseId(String caseId) {
-        return null;
+    public List<Customer> getCustomerByCaseId(String caseId) {
+        List<Customer> result = customerRepository.findByCaseId((String) caseId);
+        return result;
     }
+
+
 }
