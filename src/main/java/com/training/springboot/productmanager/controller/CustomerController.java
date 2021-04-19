@@ -49,12 +49,12 @@ public class CustomerController {
         return new ResponseEntity<Customer>(customer, HttpStatus.OK);
     }
 
-
-    /* ---------------- Sort Customer ------------------------ */
-//    @GetMapping("/sortCustomer")
-//    public ResponseEntity<Customer> sortCustomer(){
-//        return Arrays.sort();
-//    }
+    /* ---------------- SORT CUSTOMER ------------------------ */
+    @GetMapping("/sortCustomer")
+    public ResponseEntity<List<Customer>> sortCustomer(){
+        List<Customer> listCustomer = customerService.sortCustomer();
+        return new ResponseEntity<List<Customer>>(listCustomer, HttpStatus.OK);
+    }
 
 
 }

@@ -14,4 +14,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     List<Customer> findByCaseId(String caseId);
 
     Customer findCustomerByID(Integer Id);
+
+    List<Customer> findAllByOrderByIdAsc();
 }
