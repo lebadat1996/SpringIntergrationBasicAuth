@@ -21,6 +21,7 @@ public class WebController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
     @GetMapping(value = {"/", "/home"})
     public ModelAndView customers(@RequestParam("s") Optional<String> s,
                                   @RequestParam(defaultValue = "0") int page,
