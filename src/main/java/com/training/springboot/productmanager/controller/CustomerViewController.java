@@ -25,4 +25,5 @@ public class CustomerViewController {
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
+
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')">
+    <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+</div>
+<div style="margin: auto; width: 800px">
+    <br>
+    <form th:action="@{/edit}" th:object="${customer}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table class="table table-striped row">
+            <tr>
+                <td>
+                    <input type="text" th:field="*{storeId}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" th:field="*{dossierId}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" th:field="*{cifNo}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" th:field="*{customerName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" th:field="*{description}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" th:field="*{caseId}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" th:field="*{dateCreate}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
