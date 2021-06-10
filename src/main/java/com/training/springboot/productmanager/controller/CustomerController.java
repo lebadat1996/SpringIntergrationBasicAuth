@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -31,13 +32,15 @@ public class CustomerController {
     /* ---------------- GET ALL CUSTOMER ------------------------ */
     @GetMapping("/customers")
     public ResponseEntity<List<Customer>> getAll() {
-        List<Customer> listCustomer = customerService.getAll();
-        return new ResponseEntity<List<Customer>>(listCustomer, HttpStatus.OK);
+        Iterable<Customer> listCustomer = customerService.getAll();
+        List<Customer> result = new ArrayList<Customer>();
+        listCustomer.forEach(result::add);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /* ---------------- GET CUSTOMER BY ID ------------------------ */
     @GetMapping("/getCustomerByCaseId")
-    public ResponseEntity<List<Customer>> getCustomerByCaseId(@RequestParam String caseId){
+    public ResponseEntity<List<Customer>> getCustomerByCaseId(@RequestParam String caseId) {
         List<Customer> listCustomerByCaseId = customerService.getCustomerByCaseId(caseId);
         return new ResponseEntity<List<Customer>>(listCustomerByCaseId, HttpStatus.OK);
     }
@@ -51,7 +54,7 @@ public class CustomerController {
 
     /* ---------------- SORT CUSTOMER ------------------------ */
     @GetMapping("/sortCustomer")
-    public ResponseEntity<List<Customer>> sortCustomer(){
+    public ResponseEntity<List<Customer>> sortCustomer() {
         List<Customer> listCustomer = customerService.sortCustomer();
         return new ResponseEntity<List<Customer>>(listCustomer, HttpStatus.OK);
     }

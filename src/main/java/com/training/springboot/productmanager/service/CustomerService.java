@@ -5,13 +5,14 @@ import com.training.springboot.productmanager.entity.CustomerModel;
 import com.training.springboot.productmanager.repository.CustomerRepository;
 import com.training.springboot.productmanager.service.Impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CustomerService implements CustomerServiceImpl {
@@ -19,7 +20,7 @@ public class CustomerService implements CustomerServiceImpl {
     CustomerRepository customerRepository;
 
     @Override
-    public List<Customer> getAll() {
+    public Iterable<Customer> getAll() {
         return customerRepository.findAll();
     }
 
@@ -72,5 +73,40 @@ public class CustomerService implements CustomerServiceImpl {
     public List<Customer> sortCustomer() {
         List<Customer> result = customerRepository.sortById();
         return result;
+    }
+
+    @Override
+    public CustomerModel getCustomerById(Integer id) {
+        Optional<Customer> result = customerRepository.findById(id);
+        CustomerModel customer = new CustomerModel();
+        if (result.isPresent()) {
+            customer.setCaseId(result.get().getCaseId());
+            customer.setCifNo(result.get().getCifNo());
+            customer.setCustomerName(result.get().getCustomerName());
+            String date = convertDateToString(result.get().getDateCreate());
+            customer.setDateCreate(date);
+            customer.setDescription(result.get().getDescription());
+            customer.setDossierId(result.get().getDossierId());
+            customer.setStoreId(result.get().getStoreId());
+            customer.setId(result.get().getId());
+        }
+        return customer;
+    }
+
+    @Override
+    public Page<Customer> findAllByCustomerNameContaining(String name, Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable);
+    }
+
+    public static String convertDateToString(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String format = formatter.format(date);
+        System.out.println(format);
+        return format;
     }
 }

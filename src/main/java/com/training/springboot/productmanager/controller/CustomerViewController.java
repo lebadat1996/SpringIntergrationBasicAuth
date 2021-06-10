@@ -21,7 +21,7 @@ public class CustomerViewController {
     @GetMapping("/list")
     public ModelAndView customers() {
         ModelAndView modelAndView = new ModelAndView("/products");
-        List<Customer> customers = customerService.getAll();
+        Iterable<Customer> customers = customerService.getAll();
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }

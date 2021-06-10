@@ -17,7 +17,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>CaseID</th>
             <th>CifNo</th>
@@ -26,12 +25,10 @@
             <th>StoreId</th>
             <th>DateCreate</th>
             <th>Edit</th>
-            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="customer :${customers}">
-            <td th:text="${customer.getId()}"></td>
             <td th:text="${customer.getCustomerName()}"></td>
             <td th:text="${customer.getCaseId()}"></td>
             <td th:text="${customer.getCifNo()}"></td>
@@ -40,9 +37,14 @@
             <td th:text="${customer.getStoreId()}"></td>
             <td th:text="${customer.getDateCreate()}"></td>
             <td><a th:href="@{/edit/{id}(id=${customer.id})}">Edit</a></td>
-            <td><a th:href="@{/delete/__${customer.id}__}">Delete</a></td>
         </tr>
     </table>
+    <div>
+        <a th:href="@{'/'(page=${customers.number - 1})}"
+           th:if="${customers.hasPrevious()}">Previous</a>
+        <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
+        <a th:href="@{'/'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+    </div>
 </div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
